@@ -1,0 +1,16 @@
+PODS:
+  - PasseiExecutable (0.1.0)
+
+DEPENDENCIES:
+  - PasseiExecutable (from `../`)
+
+EXTERNAL SOURCES:
+  PasseiExecutable:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PasseiExecutable: 8ca7c219437fe47ca44075ca3bfb4ede5b9e3f16
+
+PODFILE CHECKSUM: 5653232554830bf3b3a55977864ae75ba3acbef0
+
+COCOAPODS: 1.15.2

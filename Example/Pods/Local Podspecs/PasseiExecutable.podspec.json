@@ -1,0 +1,22 @@
+{
+  "name": "PasseiExecutable",
+  "version": "0.1.0",
+  "summary": "A short description of PasseiExecutable.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Vagner Reis/PasseiExecutable",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Vagner Reis": "ziminny@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Vagner Reis/PasseiExecutable.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "osx": "10.10"
+  },
+  "source_files": "PasseiExecutable/Classes/**/*"
+}
