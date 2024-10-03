@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PasseiLogManager
 
 /// Uma classe que representa um processo executável de linha de comando. Esta classe é responsável por executar comandos de terminal em Swift
 /// e opcionalmente capturar sua saída, gerenciar o término do processo e lidar com timeouts.
@@ -46,6 +47,7 @@ public class PEExecutable {
     /// - Throws: Lança uma exceção se o comando for `.unzip` e o número de argumentos for diferente de 3.
     public init(command: RecognizedCommands, arguments: [String], timeout: TimeInterval? = nil) throws {
         if command == .unzip && arguments.count != 3 {
+            PLMLogger.logIt("Invalid ZIP arquments count \(#function) \(#line). Error: \(PEExecutableException.invalidZIPArgummentsCount.localizedDescription)")
             throw PEExecutableException.invalidZIPArgummentsCount
         }
         
@@ -111,6 +113,7 @@ public class PEExecutable {
                 captureContinuousOutput(captureOutput: captureOutput)
             }
         } catch {
+            PLMLogger.logIt("Execute failure \(#function) \(#line). Error: \(error.localizedDescription)")
             captureOutput(.failure(error))
         }
     }
@@ -148,6 +151,7 @@ public class PEExecutable {
     /// - Throws: Lança uma exceção se ocorrer um erro ao ler os dados.
     private func parseData() throws -> Data {
         guard let data = try pipe.fileHandleForReading.readToEnd() else {
+            PLMLogger.logIt("Parse data error \(#function) \(#line). Error: \(PEExecutableException.parseData.localizedDescription)")
             throw PEExecutableException.parseData
         }
         
@@ -164,6 +168,7 @@ public class PEExecutable {
     /// - Throws: Lança uma exceção se os dados não puderem ser convertidos para string.
     private func outputString(data: Data) throws -> String {
         guard let output = String(data: data, encoding: .utf8) else {
+            PLMLogger.logIt("Output error \(#function) \(#line). Error: \(PEExecutableException.output.localizedDescription)")
             throw PEExecutableException.output
         }
         
@@ -181,6 +186,7 @@ public class PEExecutable {
             if let output = String(data: data, encoding: .utf8), !output.isEmpty {
                 captureOutput(.success(output))
             } else {
+                PLMLogger.logIt("Output error \(#function) \(#line). Error: \(PEExecutableException.output.localizedDescription)")
                 captureOutput(.failure(PEExecutableException.output))
             }
         }

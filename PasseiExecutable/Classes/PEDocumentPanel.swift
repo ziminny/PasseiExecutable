@@ -58,7 +58,7 @@ public class PEDocumentPanel: NSOpenPanel {
             }
         }
         
-        allowedContentTypes  = uiTypes
+        allowedContentTypes = uiTypes
          
     }
     
